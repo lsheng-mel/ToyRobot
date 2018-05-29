@@ -2,10 +2,14 @@
 #include "../Models/RobotPosition.h"
 #include "../Models/Robot.h"
 
+// test the behaviours of turning left/right from RobotPosition
 TEST(TestRobotPosition, TestPositionTurn) {
   // test a robot position shall be initialised to the north direction
   RobotPosition position;
   EXPECT_EQ(position.GetDirection(), RobotPosition::NORTH);
+
+  //////////////////////////////
+  // turn left
 
   // test turn left from north shall end up facing the west
   position.TurnLeft();
@@ -22,8 +26,28 @@ TEST(TestRobotPosition, TestPositionTurn) {
   // test turn left from east shall end up facing the north
   position.TurnLeft();
   EXPECT_EQ(position.GetDirection(), RobotPosition::NORTH);
+
+  //////////////////////////////
+  // turn right
+
+  // test turn right from north shall end up facing the east
+  position.TurnRight();
+  EXPECT_EQ(position.GetDirection(), RobotPosition::EAST);
+
+  // test turn right from east shall end up facing the south
+  position.TurnRight();
+  EXPECT_EQ(position.GetDirection(), RobotPosition::SOUTH);
+
+  // test turn south from south shall end up facing the west
+  position.TurnRight();
+  EXPECT_EQ(position.GetDirection(), RobotPosition::WEST);
+
+  // test turn west from east shall end up facing the north
+  position.TurnRight();
+  EXPECT_EQ(position.GetDirection(), RobotPosition::NORTH);
 }
 
+// test the position of a robot after its initialisation
 TEST(TestRobot, TestRobotInitialPosition)
 {
 	Robot robot;
@@ -36,6 +60,7 @@ TEST(TestRobot, TestRobotInitialPosition)
 	EXPECT_EQ(position.GetDirection(), RobotPosition::NORTH);
 }
 
+// function that attempts to update a robot's position to an invalid position and assert the expected results
 void TestInvalidRobotPlace(Robot& robot, RobotPosition& newPosition, int x, int y)
 {
 	// record the orginal position of the robot
@@ -53,6 +78,7 @@ void TestInvalidRobotPlace(Robot& robot, RobotPosition& newPosition, int x, int 
 	EXPECT_EQ(orgPosition.GetY(), robot.GetPosition().GetY());
 }
 
+// function that attempts to update a robot's position to a valid position and assert the expected results
 void TestValidRobotPlace(Robot& robot, RobotPosition& newPosition, int x, int y)
 {
 	// set up the proposed new position
@@ -67,6 +93,8 @@ void TestValidRobotPlace(Robot& robot, RobotPosition& newPosition, int x, int y)
 	EXPECT_EQ(y, robot.GetPosition().GetY());
 }
 
+// test behaviours of robot when attempting to update its position to invalid positions
+// (just x & y coordinates since there is no constraints on the direction)
 TEST(TestRobot, TestRobotPlaceInvalid)
 {
 	// a robot
@@ -109,6 +137,8 @@ TEST(TestRobot, TestRobotPlaceInvalid)
 	TestInvalidRobotPlace(robot, position, 6, 6);
 }
 
+// test behaviours of robot when attempting to update its position to valid positions
+// (just x & y coordinates since there is no constraints on the direction)
 TEST(TestRobot, TestRobotPlaceValid)
 {
 	// a robot
