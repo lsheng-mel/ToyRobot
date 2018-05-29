@@ -1,3 +1,6 @@
 
 .vs/
 ToyRobot/Debug/
+packages/
+ToyRobotTest/Debug
+Debug/

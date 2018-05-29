@@ -2,7 +2,7 @@
 #include<iostream>
 #include "RobotPosition.h"
 
-class Robot
+class DllExport Robot
 {
 	// constructor & destructor
 public:
@@ -24,6 +24,9 @@ public:
 
 	// report the robot's current position
 	void Report();
+
+	// return reference to its position
+	const RobotPosition& GetPosition() const { return position; }
 
 private:
 	RobotPosition position;

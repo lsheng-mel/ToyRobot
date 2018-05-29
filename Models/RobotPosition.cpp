@@ -16,7 +16,7 @@ bool RobotPosition::IsValid()
 	const int min(0);
 	const int max(5);
 
-	if (x < min || x > max || y < min || y < max)
+	if (x < min || x > max || y < min || y > max)
 		return false;
 
 	return true;
@@ -31,8 +31,10 @@ void RobotPosition::TurnLeft()
 	{
 		direction = WEST;
 	}
-
-	direction = static_cast<Direction>(nDirection);
+	else
+	{
+		direction = static_cast<Direction>(nDirection);
+	}
 }
 
 void RobotPosition::TurnRight() 
@@ -44,8 +46,10 @@ void RobotPosition::TurnRight()
 	{
 		direction = NORTH;
 	}
-
-	direction = static_cast<Direction>(nDirection);
+	else
+	{
+		direction = static_cast<Direction>(nDirection);
+	}
 }
 
 std::string RobotPosition::GetDirectionStr()

@@ -1,7 +1,9 @@
 #pragma once
 #include <string>
 
-class RobotPosition
+#define DllExport __declspec(dllexport)
+
+class DllExport RobotPosition
 {
 	// constructor & destructor
 public:
