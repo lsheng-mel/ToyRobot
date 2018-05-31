@@ -11,7 +11,14 @@ public:
 
 	// operations
 public:
+	// place the robot to the given position if it is a valid position
 	bool Place(RobotPosition pos);
+
+	// set the position property
+	void SetPosition(RobotPosition pos);
+
+	// check if the initial position has been placed
+	bool IsPositionPlaced() const { return bPositionPlaced; }
 
 	// move towards the currect direction by one unit while sitll remains within the tabletop
 	bool Move();
@@ -22,12 +29,11 @@ public:
 	// turn the direction to the right
 	void TurnRight();
 
-	// report the robot's current position
-	void Report();
-
 	// return reference to its position
 	const RobotPosition& GetPosition() const { return position; }
 
 private:
 	RobotPosition position;
+
+	bool bPositionPlaced;
 };

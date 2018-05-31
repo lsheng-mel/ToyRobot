@@ -52,7 +52,7 @@ void RobotPosition::TurnRight()
 	}
 }
 
-std::string RobotPosition::GetDirectionStr()
+std::string RobotPosition::GetDirectionStr() const
 {
 	std::string strDirection("");
 

@@ -27,7 +27,7 @@ public:
 	int GetY() const { return y; }
 	Direction GetDirection() const { return direction; }
 
-	std::string GetDirectionStr();
+	std::string GetDirectionStr() const;
 
 	void SetX(int val) { x = val; }
 	void SetY(int val) { y = val; }

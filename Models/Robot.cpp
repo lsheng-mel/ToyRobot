@@ -2,6 +2,7 @@
 
 Robot::Robot()
 {
+	bPositionPlaced = false;
 }
 
 Robot::~Robot()
@@ -9,12 +10,18 @@ Robot::~Robot()
 
 }
 
+void Robot::SetPosition(RobotPosition pos)
+{
+	position = pos;
+	bPositionPlaced = true;
+}
+
 bool Robot::Place(RobotPosition pos)
 {
 	// validate the new position before moving
 	if (pos.IsValid())
 	{
-		position = pos;
+		SetPosition(pos);
 		return true;
 	}
 
@@ -48,7 +55,7 @@ bool Robot::Move()
 	// update the position
 	if (newPosition.IsValid())
 	{
-		position = newPosition;
+		SetPosition(newPosition);
 		return true;
 	}
 		
@@ -63,9 +70,4 @@ void Robot::TurnLeft()
 void Robot::TurnRight()
 {
 	position.TurnRight();
-}
-
-void Robot::Report()
-{
-	std::cout << position.GetX() << "," << position.GetY() << "," << position.GetDirectionStr();
 }
